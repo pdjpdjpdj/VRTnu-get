@@ -11,7 +11,15 @@ s_ajaxListener.callback = function () {
   // this.data   :the data sent, if any ex: foo=bar&a=b (urlencoded)
   // print it in console
   if(this.url.startsWith("https://media-services-public.vrt.be")){
-    console.log("yes")
+    console.log("Resending...")
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            console.log(xhr.responseText);
+        }
+    }
+    xhr.open('GET', this.url, true);
+    xhr.send(null);
   }
   console.log(this.method);
   console.log(this.url);
